@@ -2,10 +2,10 @@ import csv
 import datetime
 from datetime import date, timedelta
 
-archivoEntrada = open('raw.csv',encoding="utf8",errors='ignore')
-entrada = csv.reader(archivoEntrada, delimiter=";")
-archivoSalida=open("rawT.csv","w",newline='')
-salida=csv.writer(archivoSalida, delimiter=';')
+archivoEntrada = open('raw.csv')
+entrada = csv.reader(archivoEntrada, delimiter=",")
+archivoSalida=open("rawT.csv","w")
+salida=csv.writer(archivoSalida, delimiter=',')
 
 traspuesto =[]# la columna por la que va creando la traspuesta
 j=2
