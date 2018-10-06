@@ -1,35 +1,37 @@
 import csv
 
-archivoEntrada = open('rawT.csv')
-entrada = csv.reader(archivoEntrada, delimiter=";")
+archivoEntrada = open('prueba.csv')
+entrada = csv.reader(archivoEntrada, delimiter=",")
 archivoSalida=open("diff.csv","w")
-salida=csv.writer(archivoSalida, delimiter=';')
+salida=csv.writer(archivoSalida, delimiter=',')
 
 diff = []
-
-
+j = 0 #j es la fila
 for row in entrada:
-
-    if (row[0] == 'Dates'): #la fila de titulos
-        diff.insert(0, [])
-        i = 0 #i para recorrer la primera fila
+    if (j == 0): # Primera fila
+        diff.append([])
+        i = 0
         for title in row:
-            diff[0].insert(i, (title + '_Inc'))
+            if (row[i] == 'Dates' or row[i] == 'Date_pretty'):
+                diff[j].append(title)
+            else:
+                diff[j].append(title + '_Inc')
             i = i + 1
-    else: #las filas de los datos
-        fila = 1 #fila para saber en qué fila insertas el inc
-        n = len(diff[0])
-        j = 0 #j para recorrer las filas de datos
+    elif (j > 1): #El resto de filas (menos la 1, que no tiene anterior)
+        diff.append([])
+        i = 0 # i es la columna
         for dato in row:
-            diff.insert(i, [])
-            if (j > 1 and j < (n - 2)):
-                diff[fila].insert(j, float(dato.replace(',', '.')) - float(row[j].replace(',', '.')))
-                #En la fila por la que vas guuardas en la posición j la dif entre el dato que hay ahí
-                #y el que hay en la siguiente fila (el del día siguiente)
-            j = j + 1 #paso de dato
-        fila = fila + 1 #paso de fila
+            if (i == 0 or i == 1): #Dates y Date_Pretty
+                diff[j-1].append(dato) #Es j-1 porque la 1 no se mete
+            else: #Los valores
+                diff[j-1].append((abs(float(dato)-float(rowant[i]))/(float(dato)))*100)
+            i = i + 1
+    rowant = row
+
+    j = j + 1
 
 for row in diff:
-    print(row)
+    salida.writerow(row)
+
 archivoEntrada.close()
 archivoSalida.close()
