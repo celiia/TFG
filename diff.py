@@ -1,6 +1,12 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[5]:
+
+
 import csv
 
-archivoEntrada = open('prueba.csv')
+archivoEntrada = open('rawT.csv')
 entrada = csv.reader(archivoEntrada, delimiter=",")
 archivoSalida=open("diff.csv","w")
 salida=csv.writer(archivoSalida, delimiter=',')
@@ -23,8 +29,13 @@ for row in entrada:
         for dato in row:
             if (i == 0 or i == 1): #Dates y Date_Pretty
                 diff[j-1].append(dato) #Es j-1 porque la 1 no se mete
+                
             else: #Los valores
-                diff[j-1].append((abs(float(dato)-float(rowant[i]))/(float(dato)))*100)
+                if(float(dato)!=0):
+                    diff[j-1].append(((abs(float(dato)-float(rowant[i])))/1)*float(rowant[i]))
+                else:
+                    diff[j-1].append(0)
+                    
             i = i + 1
     rowant = row
 
@@ -35,3 +46,10 @@ for row in diff:
 
 archivoEntrada.close()
 archivoSalida.close()
+
+
+# In[ ]:
+
+
+
+
