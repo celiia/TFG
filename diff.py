@@ -29,13 +29,15 @@ for row in entrada:
         for dato in row:
             if (i == 0 or i == 1): #Dates y Date_Pretty
                 diff[j-1].append(dato) #Es j-1 porque la 1 no se mete
-                
+
             else: #Los valores
                 if(float(dato)!=0):
-                    diff[j-1].append(((abs(float(dato)-float(rowant[i])))/1)*float(rowant[i]))
+                    diferencia = (abs(float(dato)-float(rowant[i])))
+                    total = diferencia/(float(dato))
+                    diff[j-1].append(total)
                 else:
                     diff[j-1].append(0)
-                    
+
             i = i + 1
     rowant = row
 
@@ -49,7 +51,3 @@ archivoSalida.close()
 
 
 # In[ ]:
-
-
-
-
