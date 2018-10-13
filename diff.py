@@ -2,10 +2,8 @@ import csv
 import sys
 
 archivoEntrada = open(sys.argv[1])
-print(sys.argv[1])
 entrada = csv.reader(archivoEntrada, delimiter=",")
 archivoSalida=open(sys.argv[2],"w")
-print(sys.argv[2])
 salida=csv.writer(archivoSalida, delimiter=',')
 
 diff = []
