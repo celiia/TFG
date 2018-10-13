@@ -1,14 +1,11 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[5]:
-
-
 import csv
+import sys
 
-archivoEntrada = open('rawT.csv')
+archivoEntrada = open(sys.argv[1])
+print(sys.argv[1])
 entrada = csv.reader(archivoEntrada, delimiter=",")
 archivoSalida=open("diff.csv","w")
+print(sys.argv[2])
 salida=csv.writer(archivoSalida, delimiter=',')
 
 diff = []
@@ -48,6 +45,3 @@ for row in diff:
 
 archivoEntrada.close()
 archivoSalida.close()
-
-
-# In[ ]:
