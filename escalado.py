@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[12]:
+
+
 # 1. Recorro la tabla para encontrar minsimo y maxsimo de cada columna (usando una lista de maxs y una de mins)
 # 2. Recorro la tabla para escribir en el nuevo csv el dato escalado
 
@@ -20,12 +26,17 @@ for row in entrada:
                     maxs.append(dato)
                     mins.append(dato)
                 else: # Recorro y actualizo maxs y mins
-                    if (maxs[j-2] < dato):
+                    
+                       
+                    if (float(maxs[j-2]) < float(dato)):
+                        
                         maxs[j-2] = dato
-                    if (mins[j-2] > dato):
+                    if (float(mins[j-2]) > float(dato)):
                         mins[j-2] = dato
             j = j + 1
     i = i + 1
+
+
 
 escalado = []
 # 2
@@ -44,6 +55,8 @@ for row in entrada:
                 valor = float (dato)
                 minc =  float (mins[j-2])
                 maxc =  float (maxs[j-2])
+                
+                    
                 escalado[i].append((valor - minc)*(maxc - minc)) # j - 2 por las dos primeras cols
         j = j + 1
     i = i + 1
@@ -53,3 +66,22 @@ for row in escalado:
 
 archivoEntrada.close()
 archivoSalida.close()
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
