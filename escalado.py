@@ -44,7 +44,7 @@ for row in entrada:
                 valor = float (dato)
                 minc =  float (mins[j-2])
                 maxc =  float (maxs[j-2])
-                escalado[i].append((valor - minc)*(maxc - minc)) # j - 2 por las dos primeras cols
+                escalado[i].append((valor - minc)/(maxc - minc)) # j - 2 por las dos primeras cols
         j = j + 1
     i = i + 1
 
