@@ -1,7 +1,8 @@
 import csv
-archivoEntrada = open("rawT.csv")
+import sys
+archivoEntrada = open(sys.argv[1])
 entrada = csv.reader(archivoEntrada, delimiter=",")
-archivoSalida=open("raw_open.csv","w")
+archivoSalida=open(sys.argv[2],"w")
 salida=csv.writer(archivoSalida, delimiter=',')
 
 solo_open = []
