@@ -4,7 +4,7 @@
 import csv
 import sys
 archivoEntrada = open(sys.argv[1])
-entrada = csv.reader(archivoEntrada, delimiter=",")
+entrada = csv.reader(archivoEntrada, delimiter=";")
 archivoSalida=open(sys.argv[2],"w")
 salida=csv.writer(archivoSalida, delimiter=',')
 
