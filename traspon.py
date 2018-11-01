@@ -1,18 +1,17 @@
 import csv
 import datetime
+import sys
 from datetime import date, timedelta
 
-archivoEntrada = open('raw.csv')
-entrada = csv.reader(archivoEntrada, delimiter=";")
-archivoSalida=open("rawT_mv.csv","w")
+archivoEntrada = open(sys.argv[1])
+entrada = csv.reader(archivoEntrada, delimiter=",")
+archivoSalida=open(sys.argv[2],"w")
 salida=csv.writer(archivoSalida, delimiter=',')
 
 traspuesto =[]# la columna por la que va creando la traspuesta
 j=2
 for row in entrada: # las filas de la tabla inicial
     i=0
-
-
     if (row[2]=='Dates'): #si la fila es la de fechas
         traspuesto.insert(i,['Dates','Date_pretty'])
         i=i+1
