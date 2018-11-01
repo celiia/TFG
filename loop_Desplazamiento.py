@@ -30,7 +30,7 @@ for dato in d:#por cada desplazamirento
 		dia[c]=''
 		nueva.append(dia) # se meten sin los datos de la primera fila que se rellenaran mas tarde
 		
-		if(contadorReal >=dato-1):
+		if(contadorReal >=float(dato)-1):
 			
 			nueva[contadorDesplazada][c]=num
 			contadorDesplazada+=1
