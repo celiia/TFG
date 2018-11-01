@@ -1,8 +1,8 @@
 import csv
-
-archivoEntrada = open('rawT_volumenes.csv')
+import sys
+archivoEntrada = open(sys.argv[1])
 entrada = csv.reader(archivoEntrada, delimiter=",")
-archivoSalida=open("rawTV_volumenes.csv","w")
+archivoSalida=open(sys.argv[2],"w")
 salida=csv.writer(archivoSalida, delimiter=',')
 
 rawtv= []
