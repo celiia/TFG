@@ -2,9 +2,10 @@
 # 2. Recorro la tabla para escribir en el nuevo csv el dato escalado
 
 import csv
-archivoEntrada = open("rawTV.csv")
+import sys
+archivoEntrada = open(sys.argv[1])
 entrada = csv.reader(archivoEntrada, delimiter=",")
-archivoSalida=open("escalado.csv","w")
+archivoSalida=open(sys.argv[2],"w")
 salida=csv.writer(archivoSalida, delimiter=',')
 
 # 1
@@ -17,13 +18,13 @@ for row in entrada:
         for dato in row:
             if (j > 1): #Date y Date_Pretty no
                 if (i == 1): # Guardo inicialmente el valor de la primera fila
-                    maxs.append(dato)
-                    mins.append(dato)
+                    maxs.append(float(dato))
+                    mins.append(float(dato))
                 else: # Recorro y actualizo maxs y mins
-                    if (maxs[j-2] < dato):
-                        maxs[j-2] = dato
-                    if (mins[j-2] > dato):
-                        mins[j-2] = dato
+                    if (maxs[j-2] < float(dato)):
+                        maxs[j-2] = float(dato)
+                    if (mins[j-2] > float(dato)):
+                        mins[j-2] = float(dato)
             j = j + 1
     i = i + 1
 
@@ -44,7 +45,7 @@ for row in entrada:
                 valor = float (dato)
                 minc =  float (mins[j-2])
                 maxc =  float (maxs[j-2])
-                escalado[i].append((valor - minc)/(maxc - minc)) # j - 2 por las dos primeras cols
+                escalado[i].append(((valor - minc)/(maxc - minc))) # j - 2 por las dos primeras cols
         j = j + 1
     i = i + 1
 
