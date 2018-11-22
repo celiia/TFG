@@ -10,17 +10,16 @@ archivoSalida=open(ss[0]+'_fc.csv',"w")
 salida=csv.writer(archivoSalida, delimiter=',',lineterminator='\n')
 
 nw=[]
+
 rown =0
 for row in entrada:
+
+	row.pop(0)
+	row.pop(0)
 	
-	if(row[0]!='Dates'):# si no es la primera fila
-		
-		row.pop(0)
-		row.pop(0)
-		
-		nw.append(row)
-		# borro las columnas de date y date_pretty
-		rown+=1
+	nw.append(row)
+	# borro las columnas de date y date_pretty
+	rown+=1
 
 		
 for row in nw:

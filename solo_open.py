@@ -6,13 +6,25 @@ archivoSalida=open(sys.argv[2],"w")
 salida=csv.writer(archivoSalida, delimiter=',')
 
 solo_open = []
+col_open = 0
+first = True
 j = 0 #Fila
 for row in entrada:
     i = 0 #Columna
     solo_open.append([])
     for dato in row:
-        if (i == 0 or i == 1 or ((i+2) % 4 == 0)): #Es la columna open (+2 por date y date_pretty)
-            solo_open[j].append(dato)
+        if (j == 0):
+		if ("Open" in dato):
+			if (first):
+				col_open = i
+				first = False
+			solo_open[j].append(dato)
+		elif(i == 0 or i == 1):
+			solo_open[j].append(dato)
+	else:
+		print(col_open)
+		if(col_open == (i%5) or i == 0 or i == 1):
+           		solo_open[j].append(dato)
         i = i + 1
     j = j + 1
 for row in solo_open:
